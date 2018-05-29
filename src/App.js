@@ -44,8 +44,11 @@ class App extends Component {
     prompt(`Write a story including the words ${words[0]}, ${words[1]} and ${words[2]}.`);
   }
 
-  getRandomExercise = () => {
-    
+  getRandomExercise = (e) => {
+    e.preventDefault();
+    const indexGenre = Math.floor(Math.random() * GenreList.length);
+    const indexTextType = Math.floor(Math.random() * TextTypeList.length);
+    prompt(`Write a ${GenreList[indexGenre]} ${TextTypeList[indexTextType]}.`);
   }
   
   render() {

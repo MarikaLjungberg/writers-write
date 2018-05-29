@@ -22,7 +22,7 @@ const ExerciseButton = (props) => {
 
   return (
     <button className="exercise-button"
-      bsStyle="primary" 
+      //bsStyle="primary" 
       onClick={props.getExercise}
       >Get a {props.name} exercise</button>
   );
