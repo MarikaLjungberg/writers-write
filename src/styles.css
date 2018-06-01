@@ -94,3 +94,5 @@ body {
 .exercise-button:focus {
     outline: none;
 }
+
+.modal{ display:block; }

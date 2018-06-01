@@ -7,6 +7,7 @@ import './styles.css';
 //import ExerciseButton from './components/ExerciseButton.js';
 import ExerciseButtonList from './components/ExerciseButtonList.js';
 import Calendar from './components/Calendar.js';
+import ExerciseModal from './components/ExerciseModal.js';
 import RandomWordsList from './resources/RandomWordsList.js';
 import GenreList from './resources/GenreList.js';
 import TextTypeList from './resources/TextTypeList.js';
@@ -15,21 +16,30 @@ import Header from './components/Header.js'
 
 class App extends Component {
 
-
   state = {
     randomWordsList: RandomWordsList,
     genreList: GenreList,
     textTypeList: TextTypeList,
-    exercisesDone: []
+    exercisesDone: [],
+    showExerciseModal: false,
+    currentExercise: ""
   }
 
-  /*
+  /* Calculate from length of list of done exercises instead?
   updateCount = () => {
     this.setState((prevState) => ({
       exerciseCount: prevState.exerciseCount + 1
     }));
   }
-  */
+  */ 
+
+  handleCloseExercise() {
+    this.setState({ showExerciseModal: false });
+  }
+
+  handleShowExercise() {
+    this.setState({ showExerciseModal: true });
+  }
 
   getThreeWordsExercise = (e) => {
     e.preventDefault();
@@ -41,23 +51,39 @@ class App extends Component {
       indeces = Array.from(new Set(indeces));
     }
     const words = RandomWordsList.filter(word => indeces.includes(RandomWordsList.indexOf(word)));
-    prompt(`Write a story including the words ${words[0]}, ${words[1]} and ${words[2]}.`);
+    this.setState({
+      currentExercise: `Write a story including the words ${words[0]}, ${words[1]} and ${words[2]}.`,
+      showExerciseModal: true
+    });
+    console.log("Three word");
+    console.log(this.state);
   }
 
   getRandomExercise = (e) => {
     e.preventDefault();
     const indexGenre = Math.floor(Math.random() * GenreList.length);
     const indexTextType = Math.floor(Math.random() * TextTypeList.length);
-    prompt(`Write a ${GenreList[indexGenre]} ${TextTypeList[indexTextType]}.`);
+    this.setState({
+      currentExercise: `Write a ${GenreList[indexGenre]} ${TextTypeList[indexTextType]}.`,
+      showExerciseModal: true
+    });
+    console.log("Random");
+    console.log(this.state);
   }
   
   render() {
     return (
       <div className="app">
         <Header />
+        <ExerciseModal 
+          show={this.state.showExerciseModal}
+          message={""}
+          handleClose={this.handleCloseExercise}/>
         <ExerciseButtonList 
           getThreeWordsExercise={this.getThreeWordsExercise}
           getRandomExercise={this.getRandomExercise}
+          handleShowExercise={this.handleShowExercise}
+          handleCloseExercise={this.handleCloseExercise}
         />
         <Calendar />
       </div>
