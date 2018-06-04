@@ -33,11 +33,12 @@ class App extends Component {
   }
   */ 
 
-  handleCloseExercise() {
+  handleCloseExercise = (e) => {
+    e.preventDefault();
     this.setState({ showExerciseModal: false });
   }
 
-  handleShowExercise() {
+  handleShowExercise = (e) => {
     this.setState({ showExerciseModal: true });
   }
 
@@ -77,7 +78,7 @@ class App extends Component {
         <Header />
         <ExerciseModal 
           show={this.state.showExerciseModal}
-          message={""}
+          exercise={this.state.currentExercise}
           handleClose={this.handleCloseExercise}/>
         <ExerciseButtonList 
           getThreeWordsExercise={this.getThreeWordsExercise}

@@ -9,47 +9,42 @@ class ExerciseModal extends React.Component {
       return null;
     }
 
-    return (
-      <div>
-        <h1>MODALLLLL</h1>
-         <Modal className="exerciseModal"> {/*show={this.props.show} onHide={this.props.handleClose} */}
-          <Modal.Header> {/*closeButton*/}
-            <Modal.Title>Modal heading</Modal.Title>
+    return <div>
+        <Modal dialogClassName="exerciseModal" show={this.props.show} onHide={this.props.handleClose}>
+          <Modal.Header closeButton onClick={this.props.handleClose}>
+            <Modal.Title />
           </Modal.Header>
           <Modal.Body>
-            <h4>Text in a modal</h4>
-            <p>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </p>
+            <h4>{this.props.exercise}</h4>
 
             <hr />
 
-            <h4>Overflowing text to show scroll behavior</h4>
-            <p>
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-              dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-              ac consectetur ac, vestibulum at eros.
-            </p>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur
-              et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-              auctor.
-            </p>
+            <form /*onSubmit={this.props.saveExercise}*/>
+              <textarea 
+                className="exerciseInput"
+                type="text" 
+                /*value={this.props.pendingExercise}*/ 
+                placeholder="Write your text here" 
+                /*onChange={props.handleAddGuestInput}*/ 
+                />
+              {/* <Button type="submit" name="submit" value="submit">
+                Save
+              </Button> */}
+            </form>
           </Modal.Body>
           <Modal.Footer>
-            {/* <Button onClick={this.handleSave}>Save</Button> */}
-            <Button onClick={this.props.handleClose}>Close</Button>
+            <Button onClick={this.props.handleSaveExercise}>Save</Button> 
+            {/*<Button onClick={this.props.handleClose}>Close</Button>*/}
           </Modal.Footer>
         </Modal>
-      </div>
-    );
+      </div>;
   }
 }
 
 
 ExerciseModal.propTypes = {
     show: PropTypes.bool.isRequired,
-    message: PropTypes.string.isRequired,
+    exercise: PropTypes.string.isRequired,
     handleClose: PropTypes.func.isRequired
 }
 
