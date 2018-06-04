@@ -23,9 +23,9 @@ class ExerciseModal extends React.Component {
               <textarea 
                 className="exerciseInput"
                 type="text" 
-                /*value={this.props.pendingExercise}*/ 
+                value={this.props.pendingExerciseText}
                 placeholder="Write your text here" 
-                /*onChange={props.handleAddGuestInput}*/ 
+                onChange={this.props.handleDoingExercise}
                 />
               {/* <Button type="submit" name="submit" value="submit">
                 Save
@@ -45,7 +45,10 @@ class ExerciseModal extends React.Component {
 ExerciseModal.propTypes = {
     show: PropTypes.bool.isRequired,
     exercise: PropTypes.string.isRequired,
-    handleClose: PropTypes.func.isRequired
+    handleClose: PropTypes.func.isRequired,
+    pendingExerciseText: PropTypes.string.isRequired,
+    handleDoingExercise: PropTypes.func.isRequired,
+    handleSaveExercise: PropTypes.func.isRequired
 }
 
 export default ExerciseModal;

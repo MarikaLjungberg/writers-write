@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import './styles.css';
-//import {Grid, Jumbotron} from 'react-bootstrap';
-//import SearchForm from './components/SearchForm.js';
-//import SearchResults from './components/SearchResults.js';
-//import ExerciseButton from './components/ExerciseButton.js';
 import ExerciseButtonList from './components/ExerciseButtonList.js';
 import Calendar from './components/Calendar.js';
 import ExerciseModal from './components/ExerciseModal.js';
@@ -22,7 +18,8 @@ class App extends Component {
     textTypeList: TextTypeList,
     exercisesDone: [],
     showExerciseModal: false,
-    currentExercise: ""
+    currentExercise: "",
+    pendingExerciseText: ""
   }
 
   /* Calculate from length of list of done exercises instead?
@@ -35,7 +32,10 @@ class App extends Component {
 
   handleCloseExercise = (e) => {
     e.preventDefault();
-    this.setState({ showExerciseModal: false });
+    this.setState({ 
+      showExerciseModal: false,
+      pendingExerciseText: "" 
+    });
   }
 
   handleShowExercise = (e) => {
@@ -71,6 +71,28 @@ class App extends Component {
     console.log("Random");
     console.log(this.state);
   }
+
+  handleDoingExercise = (e) => {
+    this.setState({
+      pendingExerciseText: e.target.value
+    });
+  }
+
+  handleSaveExercise = (e) => {
+    e.preventDefault();
+    const newExerciseDone = [{
+      task: this.state.currentExercise,
+      answer: this.state.pendingExerciseText,
+      date: Date.now()
+    }];
+
+    this.setState({
+      exercisesDone: newExerciseDone.concat(this.state.exercisesDone),
+      currentExercise: "",
+      pendingExerciseText: ""
+    });
+    console.log(this.state.exercisesDone);
+  }
   
   render() {
     return (
@@ -79,7 +101,10 @@ class App extends Component {
         <ExerciseModal 
           show={this.state.showExerciseModal}
           exercise={this.state.currentExercise}
-          handleClose={this.handleCloseExercise}/>
+          handleClose={this.handleCloseExercise}
+          pendingExerciseText={this.pendingExerciseText}
+          handleDoingExercise={this.handleDoingExercise}
+          handleSaveExercise={this.handleSaveExercise} />
         <ExerciseButtonList 
           getThreeWordsExercise={this.getThreeWordsExercise}
           getRandomExercise={this.getRandomExercise}
