@@ -5,11 +5,14 @@
   "dependencies": {
     "ajv": "^6.5.0",
     "bootstrap": "^4.1.1",
+    "fullcalendar-reactwrapper": "^1.0.7",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.3",
-    "react": "^16.3.2",
+    "react": "^16.4.0",
     "react-bootstrap": "^0.32.1",
+    "react-calendar-heatmap": "^1.6.3",
     "react-dom": "^16.3.2",
+    "react-event-calendar": "^0.3.0",
     "react-scripts": "1.1.4"
   },
   "scripts": {

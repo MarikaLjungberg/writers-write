@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import './styles.css';
+import './react-calendar-heatmap.css';
 import ExerciseButtonList from './components/ExerciseButtonList.js';
 import Calendar from './components/Calendar.js';
 import ExerciseModal from './components/ExerciseModal.js';
@@ -83,7 +84,7 @@ class App extends Component {
     const newExerciseDone = [{
       task: this.state.currentExercise,
       answer: this.state.pendingExerciseText,
-      date: Date.now()
+      date: this.yyyymmdd()
     }];
 
     this.setState({
@@ -92,7 +93,18 @@ class App extends Component {
       pendingExerciseText: ""
     });
     console.log(this.state.exercisesDone);
+    this.handleCloseExercise(e);
   }
+
+  yyyymmdd = () => {
+    var now = new Date();
+    var y = now.getFullYear();
+    var m = now.getMonth() + 1;
+    var d = now.getDate();
+    var mm = m < 10 ? '0' + m : m;
+    var dd = d < 10 ? '0' + d : d;
+    return `${y}-${mm}-${dd}`;
+}
   
   render() {
     return (
@@ -104,14 +116,17 @@ class App extends Component {
           handleClose={this.handleCloseExercise}
           pendingExerciseText={this.pendingExerciseText}
           handleDoingExercise={this.handleDoingExercise}
-          handleSaveExercise={this.handleSaveExercise} />
+          handleSaveExercise={this.handleSaveExercise} 
+        />
         <ExerciseButtonList 
           getThreeWordsExercise={this.getThreeWordsExercise}
           getRandomExercise={this.getRandomExercise}
           handleShowExercise={this.handleShowExercise}
           handleCloseExercise={this.handleCloseExercise}
         />
-        <Calendar />
+        <Calendar 
+          exercisesDone={this.state.exercisesDone}
+        />
       </div>
     );
   }

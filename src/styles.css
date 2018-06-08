@@ -149,3 +149,22 @@ body {
     resize: none;
     outline: none;
 }
+
+.calendar {
+    align-content: center;
+    margin: auto;
+}
+
+.react-calendar-heatmap {
+    display: block;
+    width: auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    align-content: center;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin: auto;
+    max-width: 90%;
+}
+
+
