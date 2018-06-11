@@ -7,11 +7,15 @@ class Calendar extends React.Component {
     render() {
         console.log("Calendar props dateCount:");
         console.log(this.props.dateCount);
+
+        const msInHalfYear = 1000*60*60*24*365*0.5;
+        console.log(msInHalfYear);
+
         return (
             <div id="calendar">
                 <CalendarHeatmap
-                    startDate={new Date('2018-01-01')}
-                    endDate={new Date('2018-12-31')}
+                    startDate={Date.now() - msInHalfYear}
+                    endDate={Date.now() + msInHalfYear}
                     values={this.props.dateCount}
                     classForValue={(value) => {
                         if (!value) {
