@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CalendarHeatmap from 'react-calendar-heatmap';
+import {Popover} from 'react-bootstrap';
 
 class Calendar extends React.Component {
 
