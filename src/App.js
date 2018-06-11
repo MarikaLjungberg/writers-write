@@ -17,7 +17,24 @@ class App extends Component {
     randomWordsList: RandomWordsList,
     genreList: GenreList,
     textTypeList: TextTypeList,
-    exercisesDone: [],
+    exercisesDone: [
+      {
+      task: "task",
+      answer: "answer",
+      date: '2018-06-11'
+      },
+      {
+      task: "task2",
+      answer: "answer2",
+      date: '2018-06-11'
+      },
+      {
+      task: "task3",
+      answer: "answer3",
+      date: '2018-06-01'
+      }
+    ],
+    dateCount: [],
     showExerciseModal: false,
     currentExercise: "",
     pendingExerciseText: ""
@@ -40,6 +57,7 @@ class App extends Component {
   }
 
   handleShowExercise = (e) => {
+    e.preventDefault();
     this.setState({ showExerciseModal: true });
   }
 
@@ -74,6 +92,7 @@ class App extends Component {
   }
 
   handleDoingExercise = (e) => {
+    e.preventDefault();
     this.setState({
       pendingExerciseText: e.target.value
     });
@@ -90,8 +109,10 @@ class App extends Component {
     this.setState({
       exercisesDone: newExerciseDone.concat(this.state.exercisesDone),
       currentExercise: "",
-      pendingExerciseText: ""
+      pendingExerciseText: "",
+      dateCount: this.tasksPerDay(newExerciseDone.concat(this.state.exercisesDone))
     });
+    console.log("App execisesDone: ");
     console.log(this.state.exercisesDone);
     this.handleCloseExercise(e);
   }
@@ -105,6 +126,30 @@ class App extends Component {
     var dd = d < 10 ? '0' + d : d;
     return `${y}-${mm}-${dd}`;
 }
+
+  tasksPerDay = (input) => {
+    var output = {};
+    //this.state.exercisesDone
+    input.map(x => output[x.date] = (output[x.date] || 0) + 1 );
+    var result = Object.keys(output).map((key) => (
+        {
+          date: key, 
+          count: output[key]
+        }
+    ));
+
+    return result;
+
+    // this.setState({
+    //   dateCount: result
+    // });
+  }
+
+  componentDidMount = () => {
+    this.setState({
+      dateCount: this.tasksPerDay(this.state.exercisesDone)
+    });
+  }
   
   render() {
     return (
@@ -126,6 +171,7 @@ class App extends Component {
         />
         <Calendar 
           exercisesDone={this.state.exercisesDone}
+          dateCount={this.state.dateCount}
         />
       </div>
     );

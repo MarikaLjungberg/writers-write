@@ -12,33 +12,66 @@ class Calendar extends React.Component {
 // the exercise objects for each date -> count how many objects are in each list
 //  -> or just save them in this structure from the starta in the state?
 
-tasksPerDay = () => {
-    this.props.exercisesDone
-}
+// tasksPerDay = () => {
 
+//     var output = {};
+//     this.props.exercisesDone.map(x => output[x.date] = (output[x.date] || 0) + 1 );
+
+//     var result = Object.keys(output).map((key) => (
+//         {
+//           date: key, 
+//           count: output[key]
+//         }
+//     ));
+    
+//     console.log(result);
+// }
+
+    // this.props.exercisesDone.array.forEach(function(element) {
+    //     if() {
+
+    //     }
+    // }, this);
+    // let newArray = [];
+    // let count = 0;
+    // if(this.props.exercisesDone.length !== 0) {
+    //     let date = this.props.exercisesDone[0].date;
+    //     console.log("Calendar date: "+ date);
+    //     this.props.exercisesDone.map((exercise) => {
+    //         if (exercise.date === date) {
+    //             count++;
+    //             console.log("count: " + count);
+    //             return null;
+    //         } else {
+    //             const newObject = [{
+    //                 date: exercise.date,
+    //                 count: count
+    //             }]
+    //             console.log("calendar newObject: ");
+    //             console.log(newObject);
+    //             newObject.concat(newArray);
+
+    //             date = exercise.date;
+    //             return newObject;
+    //         }
+    //     });
+    //}       
+
+    // console.log("calendar newArray: ");
+    // console.log(newArray);
+    // return newArray;
+//}
 
 
     render() {
+        console.log("Calendar props dateCount:");
+        console.log(this.props.dateCount);
         return (
             <div id="calendar">
                 <CalendarHeatmap
                     startDate={new Date('2018-01-01')}
                     endDate={new Date('2018-12-31')}
-                    values={[
-                        { 
-                            date: '2018-06-01',
-                            count: 1
-                        },
-                        { 
-                            date: '2018-06-01',
-                            count: 1
-                        },
-                        { 
-                            date: '2018-06-04',
-                            count: 2
-                        },
-                        // ...and so on
-                    ]}
+                    values={this.props.dateCount}
                     classForValue={(value) => {
                         if (!value) {
                         return 'color-empty';
@@ -52,7 +85,8 @@ tasksPerDay = () => {
 }
 
 Calendar.propTypes = {
-    exercisesDone: PropTypes.array.isRequired
+    exercisesDone: PropTypes.array.isRequired,
+    dateCount: PropTypes.array.isRequired
 }
 
 export default Calendar;
