@@ -40,6 +40,19 @@ class App extends Component {
     pendingExerciseText: ""
   }
 
+/*
+  componentDidMount() {
+    // Set up other fields that are not part of the data flow (props or state)
+    // Set up exercise database connection / save db here?
+  }
+    
+  componentWillUnmount() {
+    // Clear other fields that are not part of the data flow (props or state)
+    // Tear down DB connection here?
+  }
+*/
+
+
   /* Calculate from length of list of done exercises instead?
   updateCount = () => {
     this.setState((prevState) => ({
@@ -129,7 +142,6 @@ class App extends Component {
 
   tasksPerDay = (input) => {
     var output = {};
-    //this.state.exercisesDone
     input.map(x => output[x.date] = (output[x.date] || 0) + 1 );
     var result = Object.keys(output).map((key) => (
         {
@@ -139,10 +151,6 @@ class App extends Component {
     ));
 
     return result;
-
-    // this.setState({
-    //   dateCount: result
-    // });
   }
 
   componentDidMount = () => {
@@ -177,27 +185,6 @@ class App extends Component {
     );
   }
   
-
-  /*
-  render() {
-    return (
-      <div>
-        <Jumbotron>
-          <Grid>
-            <h1>{this.state.exerciseType} Writing Exercises!</h1>
-            <p>This is an app to help you get writing!</p>
-            <div onClick={this.updateCount}><ExerciseButton exerciseType={this.state.exerciseType}/></div>
-            <p>So far you have done {this.state.exerciseCount} exercises. Good work!</p>
-
-            <SearchForm />
-          </Grid>
-        </Jumbotron>;
-
-        <SearchResults />
-      </div>
-    );
-  }
-  */
 }
 
 export default App;
