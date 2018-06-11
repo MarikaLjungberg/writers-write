@@ -21,12 +21,12 @@ class App extends Component {
       {
       task: "task",
       answer: "answer",
-      date: '2018-06-11'
+      date: '2018-06-10'
       },
       {
       task: "task2",
       answer: "answer2",
-      date: '2018-06-11'
+      date: '2018-06-10'
       },
       {
       task: "task3",

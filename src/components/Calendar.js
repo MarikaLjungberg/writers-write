@@ -4,19 +4,28 @@ import CalendarHeatmap from 'react-calendar-heatmap';
 
 class Calendar extends React.Component {
 
+    onClickOnSquare = (value) => {
+        const exercisesThatDay = this.props.exercisesDone.filter(entry => entry.date === value.date);
+        let text = ``;
+        exercisesThatDay.forEach(function(element) {
+            text = text + `The task: ${element.task} \n Your text: ${element.answer}\n`
+        }, this);
+        alert(text);
+    }
+
     render() {
         console.log("Calendar props dateCount:");
         console.log(this.props.dateCount);
 
-        const msInHalfYear = 1000*60*60*24*365*0.5;
-        console.log(msInHalfYear);
+        const msInHalfAYear = 1000*60*60*24*365*0.5;
 
         return (
             <div id="calendar">
                 <CalendarHeatmap
-                    startDate={Date.now() - msInHalfYear}
-                    endDate={Date.now() + msInHalfYear}
+                    startDate={Date.now() - msInHalfAYear}
+                    endDate={Date.now() + msInHalfAYear}
                     values={this.props.dateCount}
+                    onClick={(value) => this.onClickOnSquare(value)}
                     classForValue={(value) => {
                         if (!value) {
                         return 'color-empty';

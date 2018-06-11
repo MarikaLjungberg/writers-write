@@ -21,7 +21,7 @@ ExerciseButtonList.propTypes = {
     getThreeWordsExercise: PropTypes.func.isRequired,
     getRandomExercise: PropTypes.func.isRequired,
     handleShowExercise: PropTypes.func.isRequired,
-    handleCloseExercise: PropTypes.func.isRequired
+    handleCloseExercise: PropTypes.func.isRequired,
 }
 
 export default ExerciseButtonList;
