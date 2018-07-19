@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Modal, Button} from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { closeExercise } from '../ducks/showExercise';
 
 class ExerciseModal extends React.Component {
 
   render() {
+    console.log(this.props.show, "Show show prop")
     if (!this.props.show) {
       return null;
     }
@@ -44,6 +47,7 @@ class ExerciseModal extends React.Component {
 
 ExerciseModal.propTypes = {
     show: PropTypes.bool.isRequired,
+    exerciseType: PropTypes.string,
     exercise: PropTypes.string.isRequired,
     handleClose: PropTypes.func.isRequired,
     pendingExerciseText: PropTypes.string.isRequired,
@@ -51,4 +55,17 @@ ExerciseModal.propTypes = {
     handleSaveExercise: PropTypes.func.isRequired
 }
 
-export default ExerciseModal;
+const mapStateToProps = state => ({
+  show: state.exerciseModal.visible,
+  exerciseType: state.exerciseModal.exerciseType
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleClose: () => {
+      dispatch(closeExercise());
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExerciseModal);

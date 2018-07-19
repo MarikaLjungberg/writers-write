@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { showExercise } from '../ducks/showExercise';
+import { connect } from 'react-redux';
 import ExerciseButton from './ExerciseButton.js';
 
 const ExerciseButtonList = (props) => {
@@ -7,21 +9,29 @@ const ExerciseButtonList = (props) => {
         <div className="exercise-button-list">
             <ExerciseButton 
                 name="three-word" 
-                getExercise={props.getThreeWordsExercise}
-                showExerciseModal={props.showExerciseModal}/>
+                openExercise={props.openThreeWordExercise} />
             <ExerciseButton 
                 name="random" 
-                getExercise={props.getRandomExercise}
-                showExerciseModal={props.showExerciseModal}/>
+                openExercise={props.openRandomExercise} />
         </div>
     );
 }
 
 ExerciseButtonList.propTypes = {
-    getThreeWordsExercise: PropTypes.func.isRequired,
-    getRandomExercise: PropTypes.func.isRequired,
-    handleShowExercise: PropTypes.func.isRequired,
-    handleCloseExercise: PropTypes.func.isRequired,
+    openRandomExercise: PropTypes.func.isRequired,
+    openThreeWordExercise: PropTypes.func.isRequired,
 }
 
-export default ExerciseButtonList;
+const mapDispatchToProps = dispatch => {
+    return {
+        openRandomExercise: () => {
+            console.log("open is called");
+            dispatch(showExercise("random"));
+        },
+        openThreeWordExercise: () => {
+            dispatch(showExercise("three-word"));
+        }
+    };
+}
+
+export default connect(null, mapDispatchToProps)(ExerciseButtonList);

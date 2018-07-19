@@ -7,7 +7,7 @@ const ExerciseButton = (props) => {
   return (
     <button className="exercise-button"
       //bsStyle="primary" 
-      onClick={props.getExercise}
+      onClick={props.openExercise}
       >Get a {props.name} exercise</button>
   );
 
@@ -15,7 +15,7 @@ const ExerciseButton = (props) => {
 
 ExerciseButton.propTypes = {
   name: PropTypes.string.isRequired,
-  getExercise: PropTypes.func.isRequired
+  openExercise: PropTypes.func.isRequired
 }
 
 export default ExerciseButton;

@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducers from './ducks'; // imports index.js in ./ducks - don't need to specify index files imports
 import './App.css';
 import './styles.css';
 import './react-calendar-heatmap.css';
@@ -10,6 +13,8 @@ import GenreList from './resources/GenreList.js';
 import TextTypeList from './resources/TextTypeList.js';
 
 import Header from './components/Header.js'
+
+const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 class App extends Component {
 
@@ -35,31 +40,10 @@ class App extends Component {
       }
     ],
     dateCount: [],
-    showExerciseModal: false,
     currentExercise: "",
     pendingExerciseText: ""
   }
 
-/*
-  componentDidMount() {
-    // Set up other fields that are not part of the data flow (props or state)
-    // Set up exercise database connection / save db here?
-  }
-    
-  componentWillUnmount() {
-    // Clear other fields that are not part of the data flow (props or state)
-    // Tear down DB connection here?
-  }
-*/
-
-
-  /* Calculate from length of list of done exercises instead?
-  updateCount = () => {
-    this.setState((prevState) => ({
-      exerciseCount: prevState.exerciseCount + 1
-    }));
-  }
-  */ 
 
   handleCloseExercise = (e) => {
     e.preventDefault();
@@ -161,27 +145,25 @@ class App extends Component {
   
   render() {
     return (
-      <div className="app">
-        <Header />
-        <ExerciseModal 
-          show={this.state.showExerciseModal}
-          exercise={this.state.currentExercise}
-          handleClose={this.handleCloseExercise}
-          pendingExerciseText={this.pendingExerciseText}
-          handleDoingExercise={this.handleDoingExercise}
-          handleSaveExercise={this.handleSaveExercise} 
-        />
-        <ExerciseButtonList 
-          getThreeWordsExercise={this.getThreeWordsExercise}
-          getRandomExercise={this.getRandomExercise}
-          handleShowExercise={this.handleShowExercise}
-          handleCloseExercise={this.handleCloseExercise}
-        />
-        <Calendar 
-          exercisesDone={this.state.exercisesDone}
-          dateCount={this.state.dateCount}
-        />
-      </div>
+      <Provider store={store}>
+        <div className="app">
+          <Header />
+          <ExerciseModal /* show and handleClose is provided by redux */
+            exercise={this.state.currentExercise}
+            pendingExerciseText={this.pendingExerciseText}
+            handleDoingExercise={this.handleDoingExercise}
+            handleSaveExercise={this.handleSaveExercise} 
+          />
+          <ExerciseButtonList 
+            getThreeWordsExercise={this.getThreeWordsExercise}
+            getRandomExercise={this.getRandomExercise}
+          />
+          <Calendar 
+            exercisesDone={this.state.exercisesDone}
+            dateCount={this.state.dateCount}
+          />
+        </div>
+      </Provider>
     );
   }
   
