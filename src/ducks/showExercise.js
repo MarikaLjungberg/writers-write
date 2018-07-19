@@ -3,7 +3,7 @@ export const SHOW_EXERCISE = 'exercise/SHOW_EXERCISE';
 export const CLOSE_EXERCISE = 'exercise/CLOSE_EXERCISE';
 
 // REDUCERS
-export default function Exercise(state={visible: false, exerciseType: null}, action) {
+export default function Exercise(state={visible: false, exerciseType: null, pendingExerciseText: ''}, action) {
   console.log(action);
   switch(action.type){
     case SHOW_EXERCISE:
@@ -14,7 +14,8 @@ export default function Exercise(state={visible: false, exerciseType: null}, act
     case CLOSE_EXERCISE:
       return {
         visible: false,
-        exerciseType: null
+        exerciseType: null,
+        pendingExerciseText: ''
       };
     default:
       return state;

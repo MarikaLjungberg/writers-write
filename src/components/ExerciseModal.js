@@ -4,10 +4,35 @@ import { Modal, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { closeExercise } from '../ducks/showExercise';
 
+import RandomWordsList from '../resources/RandomWordsList.js';
+import GenreList from '../resources/GenreList.js';
+import TextTypeList from '../resources/TextTypeList.js';
+
 class ExerciseModal extends React.Component {
 
+  getThreeWordsExercise = () => {
+    let indeces = [];
+    let i = 0;
+    while (indeces.length < 3) { 
+      indeces[i] = Math.floor(Math.random() * RandomWordsList.length);
+      i++;
+      indeces = Array.from(new Set(indeces));
+    }
+    const words = RandomWordsList.filter(word => indeces.includes(RandomWordsList.indexOf(word)));
+    const currentExercise = `Write a story including the words ${words[0]}, ${words[1]} and ${words[2]}.`;
+    return currentExercise;
+  }
+
+  getRandomExercise = () => {
+    const indexGenre = Math.floor(Math.random() * GenreList.length);
+    const indexTextType = Math.floor(Math.random() * TextTypeList.length);
+    const currentExercise = `Write a ${GenreList[indexGenre]} ${TextTypeList[indexTextType]}.`;
+    return currentExercise;
+  }
+
   render() {
-    console.log(this.props.show, "Show show prop")
+    console.log(this.props.show, "Log show prop");
+    console.log(this.props.pendingExerciseText, "Log pending exercise text");
     if (!this.props.show) {
       return null;
     }
@@ -18,7 +43,7 @@ class ExerciseModal extends React.Component {
             <Modal.Title />
           </Modal.Header>
           <Modal.Body>
-            <h4>{this.props.exercise}</h4>
+            <h4>{this.props.exerciseType === 'three-word' ? this.getThreeWordsExercise() : this.getRandomExercise()}</h4>
 
             <hr />
 
@@ -48,7 +73,6 @@ class ExerciseModal extends React.Component {
 ExerciseModal.propTypes = {
     show: PropTypes.bool.isRequired,
     exerciseType: PropTypes.string,
-    exercise: PropTypes.string.isRequired,
     handleClose: PropTypes.func.isRequired,
     pendingExerciseText: PropTypes.string.isRequired,
     handleDoingExercise: PropTypes.func.isRequired,
