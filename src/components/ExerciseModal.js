@@ -3,12 +3,17 @@ import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { closeExercise } from '../ducks/showExercise';
+import { saveExercise } from '../ducks/handleExerciseText';
 
 import RandomWordsList from '../resources/RandomWordsList.js';
 import GenreList from '../resources/GenreList.js';
 import TextTypeList from '../resources/TextTypeList.js';
 
 class ExerciseModal extends React.Component {
+
+  /*state = {
+    pendingExerciseText: ''
+  }*/
 
   getThreeWordsExercise = () => {
     let indeces = [];
@@ -29,6 +34,33 @@ class ExerciseModal extends React.Component {
     const currentExercise = `Write a ${GenreList[indexGenre]} ${TextTypeList[indexTextType]}.`;
     return currentExercise;
   }
+
+  // Might not need this at all since the textare is not like a form
+  /*handleDoingExercise = (e) => {
+    e.preventDefault();
+    this.setState({
+      pendingExerciseText: e.target.value
+    });
+  }*/
+
+  handleSaveExercise = (e) => {
+    e.preventDefault();
+    const newExerciseDone = [{
+      task: this.state.currentExercise,
+      answer: this.state.pendingExerciseText,
+      date: this.yyyymmdd()
+    }];
+
+    this.setState({
+      exercisesDone: newExerciseDone.concat(this.state.exercisesDone),
+      currentExercise: "",
+      pendingExerciseText: "",
+      dateCount: this.tasksPerDay(newExerciseDone.concat(this.state.exercisesDone))
+    });
+    console.log("App execisesDone: ");
+    console.log(this.state.exercisesDone);
+  }
+
 
   render() {
     console.log(this.props.show, "Log show prop");
@@ -53,7 +85,7 @@ class ExerciseModal extends React.Component {
                 type="text" 
                 value={this.props.pendingExerciseText}
                 placeholder="Write your text here" 
-                onChange={this.props.handleDoingExercise}
+                //onChange={this.handleDoingExercise()}
                 />
               {/* <Button type="submit" name="submit" value="submit">
                 Save
@@ -75,19 +107,23 @@ ExerciseModal.propTypes = {
     exerciseType: PropTypes.string,
     handleClose: PropTypes.func.isRequired,
     pendingExerciseText: PropTypes.string.isRequired,
-    handleDoingExercise: PropTypes.func.isRequired,
+    //handleDoingExercise: PropTypes.func.isRequired, Better off handled as local state?
     handleSaveExercise: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
   show: state.exerciseModal.visible,
-  exerciseType: state.exerciseModal.exerciseType
+  exerciseType: state.exerciseModal.exerciseType,
+  pendingExerciseText: state.exerciseModal.pendingExerciseText
 });
 
 const mapDispatchToProps = dispatch => {
   return {
     handleClose: () => {
       dispatch(closeExercise());
+    },
+    handleSaveExercise: () => {
+      dispatch(saveExercise());
     }
   }
 }

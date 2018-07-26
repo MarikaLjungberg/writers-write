@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducers from './ducks'; // imports index.js in ./ducks - don't need to specify index files imports
 import './App.css';
 import './styles.css';
 import './react-calendar-heatmap.css';
 import ExerciseButtonList from './components/ExerciseButtonList.js';
 import Calendar from './components/Calendar.js';
 import ExerciseModal from './components/ExerciseModal.js';
-
 import Header from './components/Header.js'
-
-const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 class App extends Component {
 
@@ -38,14 +32,14 @@ class App extends Component {
     pendingExerciseText: ""
   }
 
-  handleDoingExercise = (e) => {
+  /*handleDoingExercise = (e) => {
     e.preventDefault();
     this.setState({
       pendingExerciseText: e.target.value
     });
-  }
+  }*/
 
-  handleSaveExercise = (e) => {
+  /*handleSaveExercise = (e) => {
     e.preventDefault();
     const newExerciseDone = [{
       task: this.state.currentExercise,
@@ -62,7 +56,7 @@ class App extends Component {
     console.log("App execisesDone: ");
     console.log(this.state.exercisesDone);
     this.handleCloseExercise(e);
-  }
+  }*/
 
   yyyymmdd = () => {
     var now = new Date();
@@ -95,7 +89,6 @@ class App extends Component {
   
   render() {
     return (
-      <Provider store={store}>
         <div className="app">
           <Header />
           <ExerciseModal /* show and handleClose is provided by redux */
@@ -112,7 +105,6 @@ class App extends Component {
             dateCount={this.state.dateCount}
           />
         </div>
-      </Provider>
     );
   }
   
