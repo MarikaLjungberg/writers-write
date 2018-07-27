@@ -3,17 +3,25 @@ import PropTypes from 'prop-types';
 import { showExercise } from '../ducks/showExercise';
 import { connect } from 'react-redux';
 import ExerciseButton from './ExerciseButton.js';
+import { Grid, Row, Col } from 'react-bootstrap';
 
 const ExerciseButtonList = (props) => {
     return (
-        <div className="exercise-button-list">
-            <ExerciseButton 
-                name="three-word" 
-                openExercise={props.openThreeWordExercise} />
-            <ExerciseButton 
-                name="random" 
-                openExercise={props.openRandomExercise} />
-        </div>
+        <Grid>
+            <Row className="exercise-button-list">
+                <Col xs={12} sm={8} md={4} mdOffset={3}>
+                    <ExerciseButton 
+                        name="three-word" 
+                        openExercise={props.openThreeWordExercise} />
+                </Col>
+                <Col xsHidden md={2}> </Col>
+                <Col xs={12} sm={8} md={4} mdOffset={3}>
+                    <ExerciseButton 
+                        name="random" 
+                        openExercise={props.openRandomExercise} />
+                </Col>
+            </Row>
+        </Grid>
     );
 }
 

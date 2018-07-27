@@ -4,8 +4,8 @@ export const CLOSE_EXERCISE = 'exercise/CLOSE_EXERCISE';
 
 const initialState = {
   visible: false, 
-  exerciseType: null, 
-  pendingExerciseText: ''
+  exerciseType: null,
+  nextExerciseId: 2
 };
 
 // REDUCERS
@@ -15,13 +15,12 @@ export default function Exercise(state=initialState, action) {
       return {
         visible: true,
         exerciseType: action.exerciseType
-        // Do I need to return a value for pendingExerciseText here?
       };
     case CLOSE_EXERCISE:
       return {
         visible: false,
         exerciseType: null,
-        pendingExerciseText: ''
+        nextExerciseId: action.exerciseId + 1
       };
     default:
       return state;
@@ -36,8 +35,9 @@ export const showExercise = (exerciseType) => {
   };
 }
 
-export const closeExercise = () => {
+export const closeExercise = (exerciseId) => {
   return {
-    type: CLOSE_EXERCISE
+    type: CLOSE_EXERCISE,
+    exerciseId: exerciseId
   };
 }

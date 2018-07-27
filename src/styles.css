@@ -43,15 +43,6 @@ h2 {
     max-width: 960px;
     color: black;
 }
-
-.exercise-button-list {
-    align-content: center;
-    width: 75%;
-    padding-left: 50px;
-    padding-right: 50px;
-    margin: auto;
-    max-width: 960px;
-}
   
 body {
     /*color: #1E5979;*/
@@ -73,12 +64,25 @@ body {
     text-align: right;
 }
 
+.exercise-button-list {
+    align-content: center;
+    margin: auto;
+    margin-left: 50px;
+    /*width: 75%;*/
+    /*padding-left: 50px;
+    padding-right: 50px;*/
+    /*max-width: 960px;*/
+}
+
 .exercise-button {
     /* background-color: white; */
     background-color: rgba(136, 188, 223, 0.62);
+    width: 40vh;   
     color: white;
     padding: 50px;
-    margin: 0 50px;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    /*margin-left: 50px;*/
     border: 0px;
 
     box-shadow: 0 15px 20px -12px rgba(0, 0, 0, .8);

@@ -11,6 +11,7 @@ import Header from './components/Header.js'
 class App extends Component {
   
   render() {
+    console.log(this.props.state);
     return (
         <div className="app">
           <Header />
@@ -25,7 +26,7 @@ class App extends Component {
 
 const mapStateToProps = state => (
   {
-    doneExercises: state.savedExercises.doneExercises
+    state: state
   }
 );
 

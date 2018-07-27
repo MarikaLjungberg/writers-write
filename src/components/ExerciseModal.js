@@ -65,11 +65,14 @@ class ExerciseModal extends React.Component {
 
   handleSaveClick = (e) => {
     e.preventDefault();
-    const newExerciseDone = [{
+    const newExerciseDone = {
+      id: this.props.nextId,
       task: this.state.currentExercise,
       answer: this.state.pendingExerciseText,
       date: this.yyyymmdd()
-    }];
+    };
+
+    console.log('new exercise id ', newExerciseDone.id);
 
     this.props.handleSaveExercise(newExerciseDone);
   }
@@ -137,11 +140,12 @@ ExerciseModal.propTypes = {
 const mapStateToProps = state => ({
     show: state.exerciseModal.visible,
     exerciseType: state.exerciseModal.exerciseType,
+    nextId: state.exerciseModal.nextExerciseId
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleClose: () => { dispatch(closeExercise()); }, // The state here is the invocation of the dispatch of the closeExercise action
+    handleClose: (exerciseId) => { dispatch(closeExercise(exerciseId)); }, // The state here is the invocation of the dispatch of the closeExercise action
     handleSaveExercise: (newExerciseDone) => { dispatch(saveExercise(newExerciseDone)); }
   }
 }
