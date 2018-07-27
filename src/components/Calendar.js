@@ -1,12 +1,37 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CalendarHeatmap from 'react-calendar-heatmap';
 import {Popover} from 'react-bootstrap';
 
+
 class Calendar extends React.Component {
 
+    state = {
+        dateCount: [], // can be calculated from exercisesDone --> should be inside calendar/heatmap?
+    }
+
+    componentDidMount = () => {
+        this.setState({
+          dateCount: this.tasksPerDay(this.props.doneExercises)
+        });
+      }
+    
+    tasksPerDay = (input) => {
+        var output = {};
+        input.map(x => output[x.date] = (output[x.date] || 0) + 1 );
+        var result = Object.keys(output).map((key) => (
+            {
+              date: key, 
+              count: output[key]
+            }
+        ));
+    
+        return result;
+      }
+
     onClickOnSquare = (value) => {
-        const exercisesThatDay = this.props.exercisesDone.filter(entry => entry.date === value.date);
+        const exercisesThatDay = this.props.doneExercises.filter(entry => entry.date === value.date);
         let text = ``;
         exercisesThatDay.forEach(function(element) {
             text = text + `The task: ${element.task} \n Your text: ${element.answer}\n`
@@ -15,8 +40,9 @@ class Calendar extends React.Component {
     }
 
     render() {
-        console.log("Calendar props dateCount:");
-        console.log(this.props.dateCount);
+        return null;
+       /* console.log("Calendar props dateCount:");
+        console.log(this.state.dateCount);
 
         const msInHalfAYear = 1000*60*60*24*365*0.5;
 
@@ -35,15 +61,20 @@ class Calendar extends React.Component {
                     }}
                 />
             </div>
-        );
+        );*/
     }
 }
 
 Calendar.propTypes = {
-    exercisesDone: PropTypes.array.isRequired,
-    dateCount: PropTypes.array.isRequired
+    doneExercises: PropTypes.array.isRequired
 }
 
-export default Calendar;
+const mapStateToProps = state => (
+    {
+      doneExercises: state.savedExercises.doneExercises
+    }
+  );
+  
+  export default connect(mapStateToProps)(Calendar);
 
 

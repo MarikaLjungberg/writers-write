@@ -2,14 +2,20 @@
 export const SHOW_EXERCISE = 'exercise/SHOW_EXERCISE';
 export const CLOSE_EXERCISE = 'exercise/CLOSE_EXERCISE';
 
+const initialState = {
+  visible: false, 
+  exerciseType: null, 
+  pendingExerciseText: ''
+};
+
 // REDUCERS
-export default function Exercise(state={visible: false, exerciseType: null, pendingExerciseText: ''}, action) {
-  console.log(action);
+export default function Exercise(state=initialState, action) {
   switch(action.type){
     case SHOW_EXERCISE:
       return {
         visible: true,
         exerciseType: action.exerciseType
+        // Do I need to return a value for pendingExerciseText here?
       };
     case CLOSE_EXERCISE:
       return {
