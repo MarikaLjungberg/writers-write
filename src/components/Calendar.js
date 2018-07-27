@@ -6,16 +6,25 @@ import {Popover} from 'react-bootstrap';
 
 
 class Calendar extends React.Component {
-
+        
     state = {
-        dateCount: [], // can be calculated from exercisesDone --> should be inside calendar/heatmap?
+        dateCount: []
     }
+   
+    componentDidUpdate(prevProps) {
+        if (prevProps.doneExercises !== this.props.doneExercises) {
+            this.setState({
+                dateCount: this.tasksPerDay(this.props.doneExercises)
+            });
+        }
+      }
 
-    componentDidMount = () => {
+    componentDidMount() {
         this.setState({
           dateCount: this.tasksPerDay(this.props.doneExercises)
         });
       }
+      
     
     tasksPerDay = (input) => {
         var output = {};
@@ -40,10 +49,6 @@ class Calendar extends React.Component {
     }
 
     render() {
-        return null;
-       /* console.log("Calendar props dateCount:");
-        console.log(this.state.dateCount);
-
         const msInHalfAYear = 1000*60*60*24*365*0.5;
 
         return (
@@ -51,7 +56,7 @@ class Calendar extends React.Component {
                 <CalendarHeatmap
                     startDate={Date.now() - msInHalfAYear}
                     endDate={Date.now() + msInHalfAYear}
-                    values={this.props.dateCount}
+                    values={this.state.dateCount}
                     onClick={(value) => this.onClickOnSquare(value)}
                     classForValue={(value) => {
                         if (!value) {
@@ -61,7 +66,7 @@ class Calendar extends React.Component {
                     }}
                 />
             </div>
-        );*/
+        );
     }
 }
 

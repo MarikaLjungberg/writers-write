@@ -25,11 +25,9 @@ ExerciseButtonList.propTypes = {
 const mapDispatchToProps = dispatch => {
     return {
         openRandomExercise: () => {
-            console.log("open is called");
             dispatch(showExercise("random"));
         },
         openThreeWordExercise: () => {
-            console.log("open is called");
             dispatch(showExercise("three-word"));
         }
     };
