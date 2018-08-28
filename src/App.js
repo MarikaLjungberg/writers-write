@@ -11,7 +11,6 @@ import Header from './components/Header.js'
 class App extends Component {
   
   render() {
-    console.log(this.props.state);
     return (
         <div className="app">
           <Header />

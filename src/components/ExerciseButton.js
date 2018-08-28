@@ -7,8 +7,9 @@ const ExerciseButton = (props) => {
   return (
     <button className="exercise-button"
       //bsStyle="primary" 
-      onClick={props.openExercise}
-      >Get a {props.name} exercise</button>
+      onClick={props.openExercise}>
+        Get a {props.name} exercise
+    </button>
   );
 
 }

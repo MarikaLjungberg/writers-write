@@ -6,9 +6,9 @@ const Header = () => {
         <div className="Header">
             <Jumbotron>
                 <Grid>
-                    <div className="header-text">
-                        <h1>Writers Write</h1>
-                        <h2>... if only a little every day</h2>
+                    <div className="row header-text">
+                        <h1 className="col-12">Writers Write</h1>
+                        <h2 className="col-xs-12 col-md-8">... if only a little every day</h2>
                     </div>
                 </Grid>
             </Jumbotron>

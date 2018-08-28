@@ -8,19 +8,14 @@ import { Grid, Row, Col } from 'react-bootstrap';
 const ExerciseButtonList = (props) => {
     return (
         <Grid>
-            <Row className="exercise-button-list">
-                <Col xs={12} sm={8} md={4} mdOffset={3}>
-                    <ExerciseButton 
+            <div className="row justify-content-center exercise-button-list">
+                    <ExerciseButton className="col-xs-12 col-sm-8 col-md-4"
                         name="three-word" 
                         openExercise={props.openThreeWordExercise} />
-                </Col>
-                <Col xsHidden md={2}> </Col>
-                <Col xs={12} sm={8} md={4} mdOffset={3}>
-                    <ExerciseButton 
+                    <ExerciseButton className="col-xs-12 col-sm-8 col-md-4"
                         name="random" 
                         openExercise={props.openRandomExercise} />
-                </Col>
-            </Row>
+                </div>
         </Grid>
     );
 }
