@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
-import './styles.css';
-import './react-calendar-heatmap.css';
+import './styles/styles.css';
+import './styles/react-calendar-heatmap.css';
 import { connect } from 'react-redux';
 import ExerciseButtonList from './components/ExerciseButtonList.js';
 import Calendar from './components/Calendar.js';

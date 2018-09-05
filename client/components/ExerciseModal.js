@@ -100,21 +100,23 @@ class ExerciseModal extends React.Component {
             <Modal.Title />
           </Modal.Header>
           <Modal.Body>
-            <h4>{this.state.currentExercise}</h4>
+            <form method="post" action="/addexercise" onSubmit={this.handleSaveClick}>
+              <h4 type="text" name="exerciseTask" >{this.state.currentExercise}</h4>
 
-            <hr />
+              <hr />
 
-            <form onSubmit={this.handleSaveClick}>
-              <textarea 
-                className="exerciseInput"
-                type="text" 
-                value={this.state.pendingExerciseText}
-                placeholder="Write your text here" 
-                onChange={this.handleTextInput}
-                />
-              {/* <Button type="submit" name="submit" value="submit">
-                Save
-              </Button> */}
+                <textarea 
+                  type="text" 
+                  name="exerciseText"
+                  className="exerciseInput"
+                  type="text" 
+                  value={this.state.pendingExerciseText}
+                  placeholder="Write your text here" 
+                  onChange={this.handleTextInput}
+                  />
+                {/* <Button type="submit" name="submit" value="submit">
+                  Save
+                </Button> */}
             </form>
           </Modal.Body>
           <Modal.Footer>
