@@ -40,22 +40,27 @@ class Calendar extends React.Component {
       }
 
     onClickOnSquare = (value) => {
-        const exercisesThatDay = this.props.doneExercises.filter(entry => entry.date === value.date);
-        let text = ``;
-        exercisesThatDay.forEach(function(element) {
-            text = text + `The task: ${element.task} \n Your text: ${element.answer}\n`
-        }, this);
-        alert(text);
+        if (value !== null) {
+            const exercisesThatDay = this.props.doneExercises.filter(entry => entry.date === value.date);
+            let text = ``;
+            exercisesThatDay.forEach(function(element) {
+                text = text + `The task: ${element.task} \n Your text: ${element.answer}\n`
+            }, this);
+            alert(text);
+        }
     }
 
     render() {
         const msInHalfAYear = 1000*60*60*24*365*0.5;
+        const msInAWeek = 1000*60*60*24*7;
+        const startDate = window.innerWidth > 600 ? (Date.now() - msInHalfAYear) : (Date.now() - msInAWeek);
+        const endDate = window.innerWidth > 600 ? (Date.now() + msInHalfAYear) : (Date.now() + msInAWeek);
 
         return (
             <div id="calendar">
                 <CalendarHeatmap
-                    startDate={Date.now() - msInHalfAYear}
-                    endDate={Date.now() + msInHalfAYear}
+                    startDate={startDate}
+                    endDate={endDate}
                     values={this.state.dateCount}
                     onClick={(value) => this.onClickOnSquare(value)}
                     classForValue={(value) => {
