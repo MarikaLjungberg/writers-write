@@ -43490,7 +43490,7 @@ class ExerciseModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Compon
           null,
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'form',
-            { method: 'post', action: '/addexercise', onSubmit: this.handleSaveClick },
+            { method: 'post', action: '/addExercise', onSubmit: this.handleSaveClick },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'h4',
               { type: 'text', name: 'exerciseTask' },

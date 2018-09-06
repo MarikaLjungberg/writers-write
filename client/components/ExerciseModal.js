@@ -100,7 +100,7 @@ class ExerciseModal extends React.Component {
             <Modal.Title />
           </Modal.Header>
           <Modal.Body>
-            <form method="post" action="/addexercise" onSubmit={this.handleSaveClick}>
+            <form method="post" action="/addExercise" onSubmit={this.handleSaveClick}>
               <h4 type="text" name="exerciseTask" >{this.state.currentExercise}</h4>
 
               <hr />
