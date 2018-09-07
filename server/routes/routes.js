@@ -12,6 +12,7 @@ router.route('/addExercise')
  var exercise = new Exercise();
   exercise.exerciseTask = req.body.exerciseTask;
   exercise.exerciseText = req.body.exerciseText;
+  exercise.created = req.body.created;
 exercise.save(function(err) {
       if (err)
         res.send(err);

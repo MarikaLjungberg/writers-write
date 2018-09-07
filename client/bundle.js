@@ -7841,7 +7841,7 @@ function handleExercise(state = initialState, action) {
 
 const saveExercise = newExerciseObject => {
   // Save to DB, then send action to reducer to update local state (should only save last updated exercise eventually)
-  console.log('Inside saveExercise in action dreator in duck');
+  console.log('Inside saveExercise in action creator in duck');
   __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/addExercise', querystring.stringify(newExerciseObject), {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded"
@@ -48379,21 +48379,25 @@ class Calendar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
         return _temp = super(...args), this.state = {
             dateCount: []
-        }, this.tasksPerDay = input => {
+        }, this.tasksPerDay = doneExercisesList => {
             var output = {};
-            input.map(x => output[x.date] = (output[x.date] || 0) + 1);
+            doneExercisesList.map(entry => output[entry.created] = (output[entry.created] || 0) + 1);
             var result = Object.keys(output).map(key => ({
                 date: key,
                 count: output[key]
             }));
-
+            console.log("doneExercisesList: ");
+            console.log(doneExercisesList);
+            console.log("result: " + result);
             return result;
         }, this.onClickOnSquare = value => {
+            console.log("Inside onclickonsquare");
+            console.log(value);
             if (value !== null) {
-                const exercisesThatDay = this.props.doneExercises.filter(entry => entry.date === value.date);
+                const exercisesThatDay = this.props.doneExercises.filter(entry => entry.created === value.date);
                 let text = ``;
                 exercisesThatDay.forEach(function (element) {
-                    text = text + `The task: ${element.task} \n Your text: ${element.answer}\n`;
+                    text = text + `The task: ${element.exerciseTask} \n Your text: ${element.exerciseText}\n`;
                 }, this);
                 alert(text);
             }

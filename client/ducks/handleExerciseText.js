@@ -47,7 +47,7 @@ export const saveExercise = (newExerciseObject) => {
   // Save to DB, then send action to reducer to update local state (should only save last updated exercise eventually)
   console.log('Inside saveExercise in action creator in duck');
   axios.post('/addExercise',
-  querystring.stringify(newExerciseObject), 
+    querystring.stringify(newExerciseObject), 
     {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
