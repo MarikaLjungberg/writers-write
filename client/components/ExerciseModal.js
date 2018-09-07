@@ -66,13 +66,12 @@ class ExerciseModal extends React.Component {
   handleSaveClick = (e) => {
     e.preventDefault();
     const newExerciseDone = {
-      id: this.props.nextId,
-      task: this.state.currentExercise,
-      answer: this.state.pendingExerciseText,
-      date: this.yyyymmdd()
+      exerciseTask: this.state.currentExercise,
+      exerciseText: this.state.pendingExerciseText,
+      created: this.yyyymmdd()
     };
 
-    console.log('new exercise id ', newExerciseDone.id);
+    console.log('Inside handleClick in modal');
 
     this.props.handleSaveExercise(newExerciseDone);
   }
@@ -100,7 +99,7 @@ class ExerciseModal extends React.Component {
             <Modal.Title />
           </Modal.Header>
           <Modal.Body>
-            <form method="post" action="/addExercise" onSubmit={this.handleSaveClick}>
+            <form method="post" onSubmit={this.handleSaveClick}>
               <h4 type="text" name="exerciseTask" >{this.state.currentExercise}</h4>
 
               <hr />
