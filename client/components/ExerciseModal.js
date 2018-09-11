@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { closeExercise } from '../ducks/showExercise';
-import { saveExercise } from '../ducks/handleExerciseText';
+import { saveExercise } from '../ducks/handleExercises';
 
 import RandomWordsList from '../resources/RandomWordsList.js';
 import GenreList from '../resources/GenreList.js';
@@ -65,7 +65,9 @@ class ExerciseModal extends React.Component {
 
   handleSaveClick = (e) => {
     e.preventDefault();
+    let id=3;
     const newExerciseDone = {
+      _id: `${id++}`,
       exerciseTask: this.state.currentExercise,
       exerciseText: this.state.pendingExerciseText,
       created: this.yyyymmdd()
@@ -152,3 +154,5 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExerciseModal);
+
+

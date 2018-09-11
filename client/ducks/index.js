@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import showExercise from './showExercise';
-import saveExercise from './handleExerciseText';
+import exerciseModal from './showExercise';
+import handleExercises from './handleExercises';
 
 export default combineReducers({
-  exerciseModal: showExercise,
-  savedExercises: saveExercise
+  exerciseModal: exerciseModal,
+  savedExercises: handleExercises,
 });

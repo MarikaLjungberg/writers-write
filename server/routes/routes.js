@@ -13,7 +13,7 @@ router.route('/addExercise')
   exercise.exerciseTask = req.body.exerciseTask;
   exercise.exerciseText = req.body.exerciseText;
   exercise.created = req.body.created;
-exercise.save(function(err) {
+  exercise.save(function(err) {
       if (err)
         res.send(err);
       res.send('Exercise successfully added to database!');
@@ -52,5 +52,14 @@ router.get('/getExercisesOnDay',function(req, res) {
     res.json(exercises);
   });
 });
+
+// Add so that a user only fetches their own exercises!
+router.get('/getAllExercises',function(req, res) {
+  Exercise.find({}, function(err, exercises) {
+    if (err)
+     res.send(err);
+    res.json(exercises);
+   });
+  });
 
 module.exports = router;

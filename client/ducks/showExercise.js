@@ -9,7 +9,7 @@ const initialState = {
 };
 
 // REDUCERS
-export default function Exercise(state=initialState, action) {
+export default function exerciseModal(state=initialState, action) {
   switch(action.type){
     case SHOW_EXERCISE:
       return {
