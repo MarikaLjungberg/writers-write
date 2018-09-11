@@ -8,7 +8,7 @@
 
 # production
 /build
-./client/bundle.js
+bundle.js
 
 # misc
 .DS_Store
@@ -22,4 +22,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # credentials
-./server/mongooseConnection.js
+mongooseConnection.js
