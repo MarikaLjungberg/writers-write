@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Modal, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { closeExercise } from '../ducks/showExercise';
-import { saveExercise } from '../ducks/handleExerciseText';
+import { saveExercise } from '../ducks/handleExercises';
 
 import RandomWordsList from '../resources/RandomWordsList.js';
 import GenreList from '../resources/GenreList.js';
@@ -65,14 +65,13 @@ class ExerciseModal extends React.Component {
 
   handleSaveClick = (e) => {
     e.preventDefault();
+    let id=3;
     const newExerciseDone = {
-      id: this.props.nextId,
-      task: this.state.currentExercise,
-      answer: this.state.pendingExerciseText,
-      date: this.yyyymmdd()
+      _id: `${id++}`,
+      exerciseTask: this.state.currentExercise,
+      exerciseText: this.state.pendingExerciseText,
+      created: this.yyyymmdd()
     };
-
-    console.log('new exercise id ', newExerciseDone.id);
 
     this.props.handleSaveExercise(newExerciseDone);
   }
@@ -100,21 +99,23 @@ class ExerciseModal extends React.Component {
             <Modal.Title />
           </Modal.Header>
           <Modal.Body>
-            <h4>{this.state.currentExercise}</h4>
+            <form method="post" onSubmit={this.handleSaveClick}>
+              <h4 type="text" name="exerciseTask" >{this.state.currentExercise}</h4>
 
-            <hr />
+              <hr />
 
-            <form onSubmit={this.handleSaveClick}>
-              <textarea 
-                className="exerciseInput"
-                type="text" 
-                value={this.state.pendingExerciseText}
-                placeholder="Write your text here" 
-                onChange={this.handleTextInput}
-                />
-              {/* <Button type="submit" name="submit" value="submit">
-                Save
-              </Button> */}
+                <textarea 
+                  type="text" 
+                  name="exerciseText"
+                  className="exerciseInput"
+                  type="text" 
+                  value={this.state.pendingExerciseText}
+                  placeholder="Write your text here" 
+                  onChange={this.handleTextInput}
+                  />
+                {/* <Button type="submit" name="submit" value="submit">
+                  Save
+                </Button> */}
             </form>
           </Modal.Body>
           <Modal.Footer>
@@ -151,3 +152,5 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExerciseModal);
+
+
