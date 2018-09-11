@@ -73,8 +73,6 @@ class ExerciseModal extends React.Component {
       created: this.yyyymmdd()
     };
 
-    console.log('Inside handleClick in modal');
-
     this.props.handleSaveExercise(newExerciseDone);
   }
 

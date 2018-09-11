@@ -13,8 +13,6 @@ import axios from 'axios';
 class App extends Component {
 
   componentDidMount() {
-    console.log("App did mount props:");
-    console.log(this.props);
     axios.get('/getAllExercises')
     .then(response => {
       this.props.getExercisesFromDb(response.data);

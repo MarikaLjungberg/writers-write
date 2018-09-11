@@ -6,28 +6,8 @@ var querystring = require('querystring');
 export const SAVE_EXERCISE = 'exercise/SAVE_EXERCISE';
 export const GET_EXERCISES_FROM_DB = 'exercise/GET_EXERCISES_FROM_DB';
 
-const initialState = 
-  {
-    doneExercises: [
-      {
-        _id: 1,
-        exerciseTask: "Write a novel.",
-        exerciseText: "Once upon a time there was a novel.",
-        created: '2018-06-10'
-      },
-      {
-        _id: 2,
-        exerciseTask: "Write a trilogy.",
-        exerciseText: "Once upon a time there was a trilogy",
-        created: '2018-06-10'
-      },
-      {
-        _id: 3,
-        exerciseTask: "Write an epic drama.",
-        exerciseText: "Once upon a time there was an epic drama.",
-        created: '2018-06-01'
-      }
-    ]
+const initialState = {
+    doneExercises: []
   };
 
 
@@ -58,7 +38,6 @@ export default function handleExercises(state=initialState, action) {
 
 export const saveExercise = (newExerciseObject) => {
   // Save to DB, then send action to reducer to update local state (should only save last updated exercise eventually)
-  console.log('Inside saveExercise in action creator in duck');
   axios.post('/addExercise',
     querystring.stringify(newExerciseObject), 
     {
@@ -74,8 +53,6 @@ export const saveExercise = (newExerciseObject) => {
 }
 
 export const getExercisesFromDb = (fetchedExercises) => {
-  console.log('Inside getExercisesFromDb in action creator in duck. FetchedExercises:');
-  console.log(fetchedExercises);
     return {
       type: GET_EXERCISES_FROM_DB,
       fetchedExercises: fetchedExercises,

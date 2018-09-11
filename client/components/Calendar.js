@@ -35,10 +35,6 @@ class Calendar extends React.Component {
               count: output[key]
             }
         ));
-        console.log("doneExercisesList: " );
-        console.log(doneExercisesList);
-        console.log("result: ");
-        console.log(result);
         return result;
       }
 

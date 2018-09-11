@@ -5192,22 +5192,7 @@ const GET_EXERCISES_FROM_DB = 'exercise/GET_EXERCISES_FROM_DB';
 
 
 const initialState = {
-  doneExercises: [{
-    _id: 1,
-    exerciseTask: "Write a novel.",
-    exerciseText: "Once upon a time there was a novel.",
-    created: '2018-06-10'
-  }, {
-    _id: 2,
-    exerciseTask: "Write a trilogy.",
-    exerciseText: "Once upon a time there was a trilogy",
-    created: '2018-06-10'
-  }, {
-    _id: 3,
-    exerciseTask: "Write an epic drama.",
-    exerciseText: "Once upon a time there was an epic drama.",
-    created: '2018-06-01'
-  }]
+  doneExercises: []
 };
 
 // REDUCERS
@@ -5230,7 +5215,6 @@ function handleExercises(state = initialState, action) {
 
 const saveExercise = newExerciseObject => {
   // Save to DB, then send action to reducer to update local state (should only save last updated exercise eventually)
-  console.log('Inside saveExercise in action creator in duck');
   __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/addExercise', querystring.stringify(newExerciseObject), {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded"
@@ -5246,8 +5230,6 @@ const saveExercise = newExerciseObject => {
 
 
 const getExercisesFromDb = fetchedExercises => {
-  console.log('Inside getExercisesFromDb in action creator in duck. FetchedExercises:');
-  console.log(fetchedExercises);
   return {
     type: GET_EXERCISES_FROM_DB,
     fetchedExercises: fetchedExercises
@@ -36561,8 +36543,6 @@ var objectKeys = Object.keys || function (obj) {
 class App extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
 
   componentDidMount() {
-    console.log("App did mount props:");
-    console.log(this.props);
     __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/getAllExercises').then(response => {
       this.props.getExercisesFromDb(response.data);
     });
@@ -48438,10 +48418,6 @@ class Calendar extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
                 date: key,
                 count: output[key]
             }));
-            console.log("doneExercisesList: ");
-            console.log(doneExercisesList);
-            console.log("result: ");
-            console.log(result);
             return result;
         }, this.onClickOnSquare = value => {
             if (value !== null) {
@@ -48584,8 +48560,6 @@ class ExerciseModal extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Compon
         exerciseText: this.state.pendingExerciseText,
         created: this.yyyymmdd()
       };
-
-      console.log('Inside handleClick in modal');
 
       this.props.handleSaveExercise(newExerciseDone);
     };
