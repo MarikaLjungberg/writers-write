@@ -5219,7 +5219,7 @@ function handleExercises(state = initialState, action) {
       };
     case GET_EXERCISES_FROM_DB:
       return {
-        doneExercises: [...state.doneExercises, action.fetchedExercises]
+        doneExercises: [...state.doneExercises, ...action.fetchedExercises]
       };
     default:
       return state;
@@ -5246,7 +5246,8 @@ const saveExercise = newExerciseObject => {
 
 
 const getExercisesFromDb = fetchedExercises => {
-  console.log('Inside getExercisesFromDb in action creator in duck');
+  console.log('Inside getExercisesFromDb in action creator in duck. FetchedExercises:');
+  console.log(fetchedExercises);
   return {
     type: GET_EXERCISES_FROM_DB,
     fetchedExercises: fetchedExercises
