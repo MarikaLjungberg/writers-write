@@ -1,3 +1,6 @@
+
+const mongooseUrl = require('./mongooseConnection.js');
+
 var express = require('express');
 var router = require('./routes/routes.js')
 var path = require('path');
@@ -15,7 +18,7 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: false}));
 
-mongoose.connect('mongodb://marikaauthwwapp:wwapp1928@ds245022.mlab.com:45022/writers-write', { useNewUrlParser: true });
+mongoose.connect(mongooseUrl.mongooseUrl, { useNewUrlParser: true });
 
 app.use('/', router);
 
