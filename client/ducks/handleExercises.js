@@ -44,10 +44,11 @@ export const saveExercise = (newExerciseObject) => {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       }
-    }).then(function(response) {
+    }).then( () => {
+      console.log("Inside saveExercise");
       return {
         type: SAVE_EXERCISE,
-        newExerciseObject: newExerciseObject
+        newExerciseObject: newExerciseObject // should save newExerciseObject to lastExerciseDone in state, or stn like that
       };
   });
 }
