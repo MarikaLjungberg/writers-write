@@ -92,6 +92,25 @@ body {
     padding-top: 0;
 }
 
+.navigationPostit .centeredText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*background: "../static/img/postit-3265087_1920.png";*/
+    /*background-color: blue;*/
+}
+
+.navigationPostit img {
+    max-width:80%;
+    max-height:80%;
+    margin-top: 0;
+}
+
+.Header .active {
+    margin-top: -0.5rem;
+}
+
 .exercise-button-list {
     align-content: center;
     margin: auto;

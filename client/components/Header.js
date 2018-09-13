@@ -1,6 +1,6 @@
 import React from 'react';
 import {Grid, Jumbotron} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import NavigationPostit from './NavigationPostit.js';
 
 const Header = () => {
@@ -17,10 +17,10 @@ const Header = () => {
                 </Grid>
             </Jumbotron>
             <div className="row justify-content-center align-items-start navbar">
-                <Link className="col-3" to='/customizeExercises'><NavigationPostit routeTo="Customize Exercises"/></Link>
-                <Link className="col-3" to='/agenda'><NavigationPostit routeTo="Agenda"/></Link>
-                <Link className="col-3" to='/groups'><NavigationPostit routeTo="Groups"/></Link>
-                <Link className="col-3" to='/inspo'><NavigationPostit routeTo="Inspo"/></Link>
+                <NavLink activeClassName='active' className="col-3" to='/customizeExercises'><NavigationPostit routeTo="Customize Exercises"/></NavLink>
+                <NavLink activeClassName='active' className="col-3" to='/agenda'><NavigationPostit routeTo="Agenda"/></NavLink>
+                <NavLink activeClassName='active' className="col-3" to='/groups'><NavigationPostit routeTo="Groups"/></NavLink>
+                <NavLink activeClassName='active' className="col-3" to='/inspo'><NavigationPostit routeTo="Inspo"/></NavLink>
             </div>
       </div>
     );
