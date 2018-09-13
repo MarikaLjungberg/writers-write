@@ -5,7 +5,12 @@ const GenreList = [
     "horror",
     "thriller",
     "romance",
+    "noir",
     "chiclit",
+    "feelgood",
+    "children's",
+    "action",  
+    "biography",  
     "fantasy"
 ]
 

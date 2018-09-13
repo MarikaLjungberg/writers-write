@@ -8,6 +8,7 @@ const TextTypeList = [
     "beginning",
     "ending",
     "letter",
+    "reportage",
     "children's story",
     "essay"
 ]
