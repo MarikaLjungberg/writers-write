@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 import './styles/styles.css';
 import './styles/react-calendar-heatmap.css';
 import { connect } from 'react-redux';
-import ExerciseButtonList from './components/ExerciseButtonList.js';
-import Calendar from './components/Calendar.js';
-import ExerciseModal from './components/ExerciseModal.js';
 import Header from './components/Header.js';
+import Dashboard from './components/Dashboard.js';
+import CustomizeExercises from './components/CustomizeExercises.js';
+import Agenda from './components/Agenda.js';
+import Groups from './components/Groups.js';
+import Inspo from './components/Inspo.js';
 import { getExercisesFromDb } from './ducks/handleExercises.js';
 import axios from 'axios';
+import { Route, Switch } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class App extends Component {
 
@@ -24,13 +28,17 @@ class App extends Component {
     return (
         <div className="app">
           <Header />
-          <ExerciseModal />
-          <ExerciseButtonList />
-          <Calendar />
+          <Switch>
+            <Route exact path='/' component={Dashboard}/>
+            <Route path='/customizeExercises' component={CustomizeExercises}/>
+            <Route path='/agenda' component={Agenda}/>
+            <Route path='/groups' component={Groups}/>
+            <Route path='/inspo' component={Inspo}/>
+          </Switch>
         </div>
     );
   }
-  
+
 }
 
 App.propTypes = {
@@ -49,4 +57,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

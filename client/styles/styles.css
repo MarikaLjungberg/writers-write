@@ -31,6 +31,17 @@ h2 {
     margin-top: 0px;
 }
 
+a:link, a:hover, a:visited, a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.Header ul, li {
+    text-decoration: none;
+    list-style-type: none;
+    display: inline-block;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -56,6 +67,10 @@ body {
     margin: auto;
 }
 
+.jumbotron {
+    margin-bottom: 0;
+}
+
 .header-text{
     /*width: 500px;*/
     display: flex;
@@ -68,6 +83,13 @@ body {
 .header-text h2{
     text-align: right;
     flex: auto;
+}
+
+.navbar {
+    text-align: center;
+    align-content: right;
+    margin-bottom: 5rem;
+    padding-top: 0;
 }
 
 .exercise-button-list {
