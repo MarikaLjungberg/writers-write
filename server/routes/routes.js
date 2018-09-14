@@ -43,7 +43,6 @@ router.get('/deleteExercise', function(req, res){
   })
  });
 
-// Add so that a user only fetches their own exercises!
 router.get('/getExercisesOnDay',function(req, res) {
   var dateRec = req.query.date;
   Exercise.find({date: dateRec}, function(err, exercises) {
@@ -53,7 +52,6 @@ router.get('/getExercisesOnDay',function(req, res) {
   });
 });
 
-// Add so that a user only fetches their own exercises!
 router.get('/getAllExercises',function(req, res) {
   Exercise.find({}, function(err, exercises) {
     if (err)
