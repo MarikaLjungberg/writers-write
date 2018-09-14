@@ -15,6 +15,7 @@ const initialState = {
 export default function handleExercises(state=initialState, action) {
   switch(action.type) {
     case SAVE_EXERCISE:
+    console.log("Inside save Exercise reducer");
       return {
         doneExercises: [
           ...state.doneExercises, 
@@ -37,7 +38,6 @@ export default function handleExercises(state=initialState, action) {
 // ACTION CREATORS
 
 export const saveExercise = (newExerciseObject) => {
-  // Save to DB, then send action to reducer to update local state (should only save last updated exercise eventually)
   axios.post('/addExercise',
     querystring.stringify(newExerciseObject), 
     {
@@ -45,10 +45,10 @@ export const saveExercise = (newExerciseObject) => {
         "Content-Type": "application/x-www-form-urlencoded"
       }
     }).then( () => {
-      console.log("Inside saveExercise");
+      console.log("Inside save Exercise action creator");
       return {
         type: SAVE_EXERCISE,
-        newExerciseObject: newExerciseObject // should save newExerciseObject to lastExerciseDone in state, or stn like that
+        newExerciseObject: newExerciseObject
       };
   });
 }

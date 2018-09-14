@@ -31,6 +31,11 @@ h2 {
     margin-top: 0px;
 }
 
+a:link, a:hover, a:visited, a:hover {
+    text-decoration: none;
+    color: black;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -45,19 +50,29 @@ h2 {
 }
   
 body {
-    /*color: #1E5979;*/
     margin: 0;
     font: 1.7em/1.5 Arial, sans-serif;
     font-family: 'Caveat', cursive, "Arial Narrow", Arial, sans-serif;
 }
+
+/* Header -------------------- */
 
 .Header {
     text-align: left;
     margin: auto;
 }
 
+.Header ul, li {
+    text-decoration: none;
+    list-style-type: none;
+    display: inline-block;
+}
+
+.jumbotron {
+    margin-bottom: 0;
+}
+
 .header-text{
-    /*width: 500px;*/
     display: flex;
 }
 
@@ -70,25 +85,44 @@ body {
     flex: auto;
 }
 
+.navbar {
+    text-align: center;
+    align-content: right;
+    margin-bottom: 5rem;
+    padding-top: 0;
+}
+
+.navigationPostit .centeredText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.navigationPostit img {
+    max-width:70%;
+    max-height:70%;
+    margin-top: 0;
+}
+
+.Header .active {
+    margin-top: -0.5rem;
+}
+
+/* Exercise buttons -------------------- */
+
 .exercise-button-list {
     align-content: center;
     margin: auto;
-    /*margin-left: 50px;*/
-    /*width: 75%;*/
-    /*padding-left: 50px;
-    padding-right: 50px;*/
-    /*max-width: 960px;*/
 }
 
 .exercise-button {
-    /* background-color: white; */
     background-color: rgba(136, 188, 223, 0.62);
     width: 40vh;   
     color: white;
     padding: 50px;
     margin: auto;
     margin-bottom: 25px;
-    /*margin-left: 50px;*/
     border: 0px;
 
     box-shadow: 0 15px 20px -12px rgba(0, 0, 0, .8);
@@ -107,9 +141,7 @@ body {
     outline: none;
 }
 
-/*.modal { 
-    display: block;
-}*/
+/* Exercise modal -------------------- */
 
 .fade:not(.show) {
     opacity: 0.9;
@@ -142,7 +174,7 @@ body {
 }
 
 .exerciseModal {
-    width: 900px;  /* 90vw;  Occupy the 90% of the screen width */
+    width: 90vw;  /* 90vw:  Occupy the 90% of the screen width */
     max-width: 900px;
     height: 900px;
     opacity: 100%;
@@ -160,6 +192,8 @@ body {
     resize: none;
     outline: none;
 }
+
+/* Calendar / Heatmap -------------------- */
 
 .calendar {
     align-content: center;
@@ -184,33 +218,54 @@ body {
 
 /* Extra small devices */
 @media (min-width: 0px) {  
-    h1 {font-size:2.625rem;} /*1rem = 16px*/
+    h1 {font-size:2.625rem;} 
+
+    h2 {font-size:1.625rem;}
+
+    .navigationPostit span {
+        line-height: 1;
+    }  
   }
  
 @media (min-width: 338px) {  
-    h1 {font-size:3.625rem;} /*1rem = 16px*/
-  }
-
-@media (min-width: 0px) {  
-    h2 {font-size:1.625rem;} /*1rem = 16px*/
+    h1 {font-size:3.625rem;} 
   }
 
 /* Small devices (landscape phones, 544px and up) */
 @media (min-width: 544px) {  
-    h1 {font-size:4.625rem;} /*1rem = 16px*/
+    h1 {font-size:4.625rem;} 
   }
    
   /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
-  @media (min-width: 768px) {  
-    h1 {font-size:4.625rem;} /*1rem = 16px*/
+  @media (max-width: 768px) {  
+    h1 {font-size:4.625rem;} 
+
+    .navigationPostit img {
+        max-width: 100%;
+        max-height: 100%;
+        margin-top: 0;
+        padding-top: 0;
+        vertical-align: unset;
+    }
+    .navigationPostit span {
+        font-size: 1.2rem;
+        line-height: 1;
+    }
+
+    .navigationPostit .centeredText {
+        position: absolute;
+        top: 40%;
+        left: 45%;
+        transform: translate(-40%, -45%);
+    }
   }
    
   /* Large devices (desktops, 992px and up) */
   @media (min-width: 992px) { 
-    h1 {font-size:5.625rem;} /*1rem = 16px*/
+    h1 {font-size:5.625rem;}
   }
    
   /* Extra large devices (large desktops, 1200px and up) */
   @media (min-width: 1200px) {  
-    h1 {font-size:5.625rem;} /*1rem = 16px*/    
+    h1 {font-size:5.625rem;}  
   }

@@ -113,16 +113,10 @@ class ExerciseModal extends React.Component {
                   placeholder="Write your text here" 
                   onChange={this.handleTextInput}
                   />
-                {/* <Button type="submit" name="submit" value="submit">
-                  Save
-                </Button> */}
             </form>
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.handleSaveClick}>Save</Button> 
-            {/*<Button onClick={this.props.handleClose}>Close</Button>*/ 
-            /* if user saves exercise several times (without closing modal), we should check if exercise with that id already exists and if so,
-            replace the old version of the exercise with the new current version */ } 
           </Modal.Footer>
         </Modal>
       </div>;
@@ -146,7 +140,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleClose: (exerciseId) => { dispatch(closeExercise(exerciseId)); }, // The state here is the invocation of the dispatch of the closeExercise action
+    handleClose: (exerciseId) => { dispatch(closeExercise(exerciseId)); },
     handleSaveExercise: (newExerciseDone) => { dispatch(saveExercise(newExerciseDone)); }
   }
 }
